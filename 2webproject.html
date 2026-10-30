@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masala &amp; Mogra — Indian kitchen, warmly served</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+:root{--ink:#20271f;--muted:#72776d;--paper:#f7f4ed;--card:#fffdf8;--green:#314b39;--orange:#df7046;--line:#e8e4da;--gold:#d3a14b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.wrap{max-width:1180px;margin:auto;padding:0 28px}
+.topbar{height:42px;background:var(--green);color:#f6f1e5;display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:.04em}
+.topbar b{color:#f2c474;margin:0 5px}
+.nav{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.brand{display:flex;gap:11px;align-items:center;text-decoration:none;color:var(--ink)}
+.brandmark{width:38px;height:38px;background:var(--green);color:#f5ca7b;border-radius:50%;display:grid;place-items:center;font-family:Georgia;font-size:22px}
+.brand strong{font:600 20px 'Playfair Display'}
+.navlinks{display:flex;gap:31px}
+.navlinks a{color:var(--ink);text-decoration:none;font-size:13px}
+.navlinks a:hover{color:var(--orange)}
+.navright{display:flex;align-items:center;gap:20px}
+.hours{font-size:11px;color:var(--muted)}
+.cartbtn{border:0;background:var(--green);color:white;border-radius:999px;padding:12px 18px;font-size:12px;font-weight:600}
+.cartbtn span{background:#f2c474;color:var(--ink);border-radius:50px;padding:3px 7px;margin-left:7px}
+.hero{padding:54px 0 62px;display:grid;grid-template-columns:1.02fr .98fr;gap:55px;align-items:center}
+.eyebrow{font-size:11px;letter-spacing:.17em;text-transform:uppercase;color:#6e816b;font-weight:700;display:flex;align-items:center;gap:9px}
+.eyebrow:before{content:'';width:22px;height:1px;background:var(--orange)}
+h1,h2,h3,p{margin-top:0}
+h1{font:500 clamp(43px,5.5vw,71px)/1.08 'Playfair Display';letter-spacing:-2px;margin:21px 0}
+.hero p{font-size:15px;line-height:1.8;color:var(--muted);max-width:435px}
+.hero-actions{display:flex;align-items:center;gap:19px;margin-top:27px}
+.primary{background:var(--green);border:0;border-radius:5px;color:white;text-decoration:none;padding:15px 22px;font-weight:600;font-size:13px;display:inline-flex;align-items:center;gap:10px}
+.plain{color:var(--ink);text-decoration:none;font-size:13px;font-weight:600}
+.hero-note{margin-top:33px;display:flex;align-items:center;gap:12px;color:var(--muted);font-size:11px}
+.faces{display:flex}
+.faces i{font-style:normal;background:#d4a07d;color:#fff;width:27px;height:27px;border-radius:50%;border:2px solid var(--paper);display:grid;place-items:center;font-size:10px;margin-right:-7px}
+.faces i:nth-child(2){background:#81926f}
+.faces i:nth-child(3){background:#b8775e}
+.faces i:nth-child(4){background:#bd9a53}
+.hero-art{height:390px;border-radius:48% 48% 8px 8px;overflow:hidden;position:relative;background:linear-gradient(140deg,#e8d9bd,#b47b49 55%,#3e4832)}
+.hero-art:before{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,29,20,.45),transparent 58%),radial-gradient(ellipse at 55% 52%,#e7c380 0 21%,#a4492c 21.5% 28%,#e8ddc4 28.5% 35%,#48573a 36% 40%,transparent 40.5%),radial-gradient(ellipse at 18% 20%,#718052 0 5%,transparent 5.5%),radial-gradient(ellipse at 78% 19%,#70844b 0 7%,transparent 7.5%),radial-gradient(ellipse at 90% 72%,#c45f37 0 5%,transparent 5.5%)}
+.dish{position:absolute;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle at 50% 50%,#f2ead6 0 55%,#faf7ed 56% 64%,#cfc5ae 65% 67%,#fff 68%);left:50%;top:49%;transform:translate(-50%,-50%);box-shadow:0 22px 35px #30291e55}
+.dish:before{content:'';position:absolute;inset:52px;border-radius:50%;background:radial-gradient(ellipse at 40% 38%,#eeb956 0 18%,transparent 19%),radial-gradient(ellipse at 63% 60%,#b74425 0 16%,transparent 17%),radial-gradient(ellipse at 40% 71%,#688048 0 11%,transparent 12%),radial-gradient(ellipse at 68% 29%,#74884b 0 10%,transparent 11%),radial-gradient(ellipse at 53% 49%,#e3b94e 0 44%,#c89339 67%,#d5a345 68%)}
+.artlabel{position:absolute;bottom:22px;left:25px;color:white;font:500 20px 'Playfair Display'}
+.rating{position:absolute;right:20px;top:21px;background:var(--card);padding:12px 15px;border-radius:5px;box-shadow:0 7px 20px #29291d17;font-size:11px}
+.rating strong{font-size:15px}
+.rating em{font-style:normal;color:var(--gold);letter-spacing:1px}
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:17px 0;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:11px;letter-spacing:.06em}
+.strip span{display:flex;align-items:center;gap:8px}
+.strip b{color:var(--ink);letter-spacing:0;font-weight:600}
+.section{padding:75px 0}
+.sectionhead{display:flex;justify-content:space-between;align-items:end;margin-bottom:29px}
+.sectionhead h2{font:500 38px 'Playfair Display';margin:9px 0 0;letter-spacing:-.6px}
+.sectionhead p{color:var(--muted);font-size:12px;margin:0}
+.discount{background:#e9eee3;border-radius:7px;padding:21px 24px;display:flex;justify-content:space-between;align-items:center;margin-bottom:34px}
+.discounttext{display:flex;gap:14px;align-items:center}
+.percent{width:42px;height:42px;border-radius:50%;background:#d7e2d1;color:var(--green);display:grid;place-items:center;font-weight:700}
+.discount strong{font:600 17px 'Playfair Display'}
+.discount small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.code{border:1px dashed #86947d;padding:9px 13px;border-radius:4px;font-size:11px;color:var(--green);letter-spacing:.08em;font-weight:700}
+.filters{display:flex;gap:9px;margin-bottom:22px;flex-wrap:wrap}
+.filter{border:1px solid var(--line);background:transparent;padding:9px 15px;border-radius:99px;font-size:11px;color:var(--muted)}
+.filter.active{background:var(--green);border-color:var(--green);color:white}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:7px;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.item:hover{transform:translateY(-3px);box-shadow:0 12px 28px #27302210}
+.foodart{height:150px;position:relative;display:grid;place-items:center;background:linear-gradient(135deg,#e8e3d4,#d5d5bc)}
+.foodart .foodemoji{font-size:66px;filter:drop-shadow(0 8px 8px #473d2c2c)}
+.foodart:nth-child(3n+2){background:linear-gradient(135deg,#eedac1,#d2b591)}
+.foodart:nth-child(3n){background:linear-gradient(135deg,#d6e0d0,#9eaf91)}
+.badge{position:absolute;top:12px;left:12px;background:#fffdf4;border-radius:99px;padding:6px 9px;font-size:9px;font-weight:700;letter-spacing:.04em;color:var(--green)}
+.badge.sale{background:#fce7da;color:#a54e2c}
+.itembody{padding:16px}
+.itemtop{display:flex;justify-content:space-between;gap:10px}
+.item h3{font:600 19px 'Playfair Display';margin:0 0 7px}
+.price{font-weight:700;font-size:14px;white-space:nowrap}
+.old{font-size:10px;color:#a4a398;text-decoration:line-through;font-weight:400;margin-right:4px}
+.item p{font-size:11px;line-height:1.55;color:var(--muted);min-height:36px;margin:4px 0 14px}
+.itemfoot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid #efede6;padding-top:12px}
+.available{font-size:10px;color:#53734f;display:flex;align-items:center;gap:6px}
+.available:before{content:'';width:6px;height:6px;border-radius:50%;background:#6c9a5b}
+.available.sold{color:#a49d8f}
+.available.sold:before{background:#c0b9ab}
+.add{border:1px solid #d5d9cf;background:transparent;color:var(--green);border-radius:4px;padding:8px 12px;font-size:10px;font-weight:700}
+.add:hover{background:var(--green);color:white}
+.add:disabled{opacity:.35;cursor:not-allowed}
+.menufoot{text-align:center;margin-top:26px;color:var(--muted);font-size:11px}
+.ordersection{background:#e9ede5;padding:60px 0}
+.ordergrid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.ordersection h2{font:500 36px 'Playfair Display';margin:10px 0}
+.ordersection p{color:var(--muted);font-size:12px;line-height:1.7}
+.steps{margin-top:25px;display:flex;gap:0}
+.step{position:relative;flex:1;text-align:center;color:#9a9d91;font-size:10px}
+.step:not(:last-child):after{content:'';position:absolute;height:1px;background:#c5cbbf;left:58%;right:-42%;top:13px}
+.step .dot{position:relative;z-index:1;margin:0 auto 9px;width:27px;height:27px;border-radius:50%;border:1px solid #bbc3b5;background:#e9ede5;display:grid;place-items:center;color:#8a9483}
+.step.done{color:var(--green);font-weight:700}
+.step.done .dot{background:var(--green);color:white;border-color:var(--green)}
+.ordercard{background:var(--card);border-radius:8px;padding:23px 25px;box-shadow:0 10px 30px #314b390c}
+.ordercardhead{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:14px}
+.ordercardhead strong{font:600 17px 'Playfair Display'}
+.ordercardhead small{font-size:10px;color:var(--muted)}
+.live{font-size:9px;color:#4f8550;text-transform:uppercase;letter-spacing:.1em;display:flex;align-items:center;gap:5px}
+.live:before{content:'';width:6px;height:6px;background:#72a263;border-radius:50%;box-shadow:0 0 0 3px #e7f0e3}
+.orderitems{padding:10px 0;min-height:63px}
+.orderrow{display:flex;justify-content:space-between;font-size:11px;padding:7px 0}
+.empty{font-size:11px;color:var(--muted);padding:13px 0}
+.subtotal{border-top:1px solid var(--line);padding-top:12px;display:flex;justify-content:space-between;font-size:12px;font-weight:700}
+.delivery{color:var(--muted);font-weight:400;font-size:10px;margin-top:7px;display:flex;justify-content:space-between}
+.checkout{margin-top:17px;width:100%;padding:13px;border:0;border-radius:4px;background:var(--green);color:white;font-size:11px;font-weight:700}
+.checkout:disabled{opacity:.4;cursor:not-allowed}
+.feedback{display:grid;grid-template-columns:.82fr 1.18fr;gap:70px;align-items:start}
+.quote{background:#fffaf0;border-left:3px solid var(--gold);padding:23px 25px;margin-top:23px}
+.stars{color:var(--gold);letter-spacing:2px;font-size:12px}
+.quote blockquote{font:500 18px/1.5 'Playfair Display';margin:14px 0}
+.quote cite{font-style:normal;color:var(--muted);font-size:10px}
+.feedbackform{background:var(--card);border:1px solid var(--line);border-radius:7px;padding:24px}
+.feedbackform h3{font:600 19px 'Playfair Display';margin-bottom:5px}
+.feedbackform>p{color:var(--muted);font-size:11px;margin-bottom:20px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.fields input,.fields textarea{width:100%;border:1px solid var(--line);background:#fffefa;border-radius:4px;padding:12px;font-size:11px;outline:none}
+.fields input:focus,.fields textarea:focus{border-color:#8c9b83}
+.fields textarea{grid-column:1/-1;resize:vertical;min-height:82px}
+.ratinginput{display:flex;gap:5px;margin:15px 0}
+.ratinginput button{border:0;background:none;color:#d9d5ca;font-size:19px;padding:0}
+.ratinginput button.selected{color:var(--gold)}
+.feedbackform .primary{padding:12px 17px;font-size:11px}
+.thanks{display:none;margin-top:12px;color:#527248;font-size:11px}
+.footer{background:var(--green);color:#eae9dd;padding:39px 0}
+.footerrow{display:flex;align-items:center;justify-content:space-between}
+.footer .brand{color:#fff}
+.footer p{color:#c3c9bc;font-size:10px;margin:7px 0 0}
+.footlinks{display:flex;gap:22px}
+.footlinks a{color:#eae9dd;text-decoration:none;font-size:10px}
+.copyright{border-top:1px solid #ffffff24;margin-top:26px;padding-top:17px;color:#b6c0b3;font-size:9px;display:flex;justify-content:space-between}
+.toast{position:fixed;bottom:23px;left:50%;transform:translate(-50%,20px);background:#20271f;color:white;padding:12px 18px;border-radius:5px;font-size:11px;opacity:0;transition:.25s;pointer-events:none;z-index:3}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:760px){
+  .wrap{padding:0 19px}.nav{height:69px}.navlinks,.hours{display:none}
+  .hero{grid-template-columns:1fr;gap:29px;padding:42px 0}
+  .hero-art{height:315px;grid-row:1}.hero-copy{grid-row:2}h1{font-size:51px}
+  .strip{gap:17px;flex-wrap:wrap;justify-content:center}
+  .section{padding:55px 0}
+  .sectionhead{align-items:start;gap:15px;flex-direction:column}
+  .grid{grid-template-columns:repeat(2,1fr);gap:11px}
+  .foodart{height:125px}.itembody{padding:13px}.item h3{font-size:16px}.price{font-size:12px}
+  .ordergrid,.feedback{grid-template-columns:1fr;gap:25px}
+  .ordersection{padding:48px 0}.feedback{gap:20px}
+  .footerrow{align-items:flex-start;gap:25px;flex-direction:column}
+  .copyright{gap:10px;flex-direction:column}
+}
+@media(max-width:430px){
+  .grid{grid-template-columns:1fr}.foodart{height:165px}
+  .sectionhead h2{font-size:33px}.discount{padding:16px;gap:10px}
+  .discount strong{font-size:15px}.code{font-size:9px;padding:8px}
+  .hero-art{height:270px}.dish{width:210px;height:210px}
+}
+</style>
+</head>
+<body>
+<div class="topbar">A little something for lunch <b>·</b> 15% off your first order with <b>HELLO15</b></div>
+
+<header class="wrap nav">
+  <a class="brand" href="#home"><span class="brandmark">S</span><strong>Masala &amp; Mogra</strong></a>
+  <nav class="navlinks"><a href="#menu">Our menu</a><a href="#about">Our story</a><a href="#reviews">Reviews</a></nav>
+  <div class="navright">
+    <span class="hours">OPEN TODAY · 11 AM–10 PM</span>
+    <button class="cartbtn" onclick="document.querySelector('#live-order').scrollIntoView({behavior:'smooth'})">Your order <span id="cart-count">0</span></button>
+  </div>
+</header>
+
+<main id="home">
+  <section class="wrap hero">
+    <div class="hero-copy">
+      <div class="eyebrow">Indian flavors, good company</div>
+      <h1>Gather round.<br>Eat well.</h1>
+      <p>From comforting North Indian classics to bright coastal favorites, every dish is prepared fresh with fragrant spices and a little love.</p>
+      <div class="hero-actions">
+        <a class="primary" href="#menu">Explore the menu <span>↗</span></a>
+        <a class="plain" href="#about">Our little story&nbsp; →</a>
+      </div>
+      <div class="hero-note">
+        <span class="faces"><i>R</i><i>M</i><i>A</i><i>J</i></span>
+        <span><b style="color:var(--ink)">4.9 out of 5</b> from 1,200+ happy diners</span>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="dish"></div>
+      <div class="rating"><em>★★★★★</em><br><strong>4.9</strong> · Neighborhood favorite</div>
+      <div class="artlabel">A table worth lingering at.</div>
+    </div>
+  </section>
+
+  <div class="wrap strip">
+    <span>✳ <b>Indian spices &amp; local produce</b></span>
+    <span>◷ <b>Made fresh to order</b></span>
+    <span>⌂ <b>Family recipes, served with love</b></span>
+    <span>♧ <b>Freshly prepared</b></span>
+  </div>
+
+  <section class="wrap section" id="menu">
+    <div class="sectionhead">
+      <div><div class="eyebrow">From our kitchen</div><h2>Our Indian menu, made for sharing.</h2></div>
+      <p>Traditional Indian favorites, made fresh.</p>
+    </div>
+    <div class="discount">
+      <div class="discounttext">
+        <div class="percent">15%</div>
+        <div><strong>A warm welcome from our kitchen.</strong><small>Take 15% off your first order over ₹1,500.</small></div>
+      </div>
+      <div class="code">USE HELLO15</div>
+    </div>
+    <div class="filters" id="filters">
+      <button class="filter active" data-cat="All">All day favorites</button>
+      <button class="filter" data-cat="Starters">Starters</button>
+      <button class="filter" data-cat="Mains">Mains</button>
+      <button class="filter" data-cat="Something sweet">Something sweet</button>
+      <button class="filter" data-cat="Drinks">Drinks</button>
+    </div>
+    <div class="grid" id="menu-grid"></div>
+    <div class="menufoot">✳ &nbsp; Ask us about gluten-free, vegetarian, and vegan options.</div>
+  </section>
+
+  <section class="ordersection" id="live-order">
+    <div class="wrap ordergrid">
+      <div>
+        <div class="eyebrow">From click to doorstep</div>
+        <h2>Your order, in the making.</h2>
+        <p>Add a few favorites to get started. We'll keep you posted every step of the way. Pickup in about 20 minutes, or delivery in 35–45.</p>
+        <div class="steps">
+          <div class="step done" id="s1"><div class="dot">✓</div>Order placed</div>
+          <div class="step" id="s2"><div class="dot">2</div>In the kitchen</div>
+          <div class="step" id="s3"><div class="dot">3</div>On its way</div>
+          <div class="step" id="s4"><div class="dot">4</div>Enjoy!</div>
+        </div>
+      </div>
+      <div class="ordercard">
+        <div class="ordercardhead">
+          <div><strong>Your order</strong><br><small id="order-message">Add something delicious to begin</small></div>
+          <span class="live">Live updates</span>
+        </div>
+        <div class="orderitems" id="order-items"><div class="empty">Your basket is waiting for a little something.</div></div>
+        <div class="subtotal"><span>Subtotal</span><span id="subtotal">₹0</span></div>
+        <div class="delivery"><span>Delivery</span><span id="delivery">Calculated at checkout</span></div>
+        <button class="checkout" id="checkout" disabled onclick="placeOrder()">Start my order</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section" id="reviews">
+    <div class="feedback">
+      <div>
+        <div class="eyebrow">A note from our table</div>
+        <h2 style="font:500 38px 'Playfair Display';margin:9px 0 0">The best part is hearing from you.</h2>
+        <div class="quote">
+          <div class="stars">★★★★★</div>
+          <blockquote>“The kind of place you want to keep to yourself, but love too much not to share.”</blockquote>
+          <cite>— Priya S., neighborhood regular</cite>
+        </div>
+      </div>
+      <form class="feedbackform" id="feedback-form">
+        <h3>Leave a little love</h3>
+        <p>We read every note. Tell us how we did.</p>
+        <div class="fields">
+          <input required placeholder="Your name" aria-label="Your name">
+          <input type="email" required placeholder="Email address" aria-label="Email address">
+          <textarea required placeholder="What was your visit like?" aria-label="Your feedback"></textarea>
+        </div>
+        <div style="font-size:10px;color:var(--muted);margin-top:14px">Your rating</div>
+        <div class="ratinginput" aria-label="Choose a rating">
+          <button type="button" data-star="1">★</button>
+          <button type="button" data-star="2">★</button>
+          <button type="button" data-star="3">★</button>
+          <button type="button" data-star="4">★</button>
+          <button type="button" data-star="5">★</button>
+        </div>
+        <button class="primary" type="submit">Send your note&nbsp; →</button>
+        <div class="thanks" id="thanks">Thanks for sharing a little love. Your note has been received!</div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" id="about">
+  <div class="wrap">
+    <div class="footerrow">
+      <div>
+        <a class="brand" href="#home"><span class="brandmark" style="background:#e8eee5;color:var(--green)">S</span><strong>Masala &amp; Mogra</strong></a>
+        <p>Authentic Indian flavors, shared generously.</p>
+      </div>
+      <div class="footlinks"><a href="#menu">Menu</a><a href="#reviews">Guestbook</a><a href="mailto:hello@masalaandmogra.example">Say hello</a></div>
+    </div>
+    <div class="copyright"><span>© 2025 Masala &amp; Mogra Kitchen</span><span>Made slowly, served warmly.</span></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const dishes = [
+  {id:1,name:'Paneer Tikka',cat:'Starters',desc:'Tandoor grilled paneer, peppers, mint chutney.',price:349,emoji:'🍢',badge:'HOUSE FAVORITE'},
+  {id:2,name:'Samosa Chaat',cat:'Starters',desc:'Crisp samosa, chickpeas, yogurt, tamarind chutney.',price:249,emoji:'🥟',badge:'STREET FOOD FAVORITE'},
+  {id:3,name:'Butter Chicken',cat:'Mains',desc:'Tandoori chicken in a creamy tomato and makhani sauce.',price:549,old:649,emoji:'🍛',badge:'BESTSELLER',sale:true},
+  {id:4,name:'Hyderabadi Chicken Biryani',cat:'Mains',desc:'Fragrant basmati rice, slow cooked with warming spices.',price:499,emoji:'🍚',badge:'DUM COOKED'},
+  {id:5,name:'Palak Paneer',cat:'Mains',desc:'Soft paneer in a velvety spinach gravy. Served with rice.',price:399,emoji:'🥘',badge:'VEGETARIAN'},
+  {id:6,name:'Garlic Naan',cat:'Starters',desc:'Soft tandoor baked naan brushed with garlic butter.',price:89,emoji:'🫓',badge:'BAKED TO ORDER'},
+  {id:7,name:'Gulab Jamun',cat:'Something sweet',desc:'Warm milk dumplings soaked in cardamom rose syrup.',price:149,emoji:'🍡',badge:'A LITTLE TREAT'},
+  {id:8,name:'Kulfi Falooda',cat:'Something sweet',desc:'Creamy malai kulfi, vermicelli, rose syrup, pistachio.',price:199,emoji:'🍨',badge:'HOUSE FAVORITE'},
+  {id:9,name:'Masala Chai',cat:'Drinks',desc:'Black tea simmered with milk, ginger, and whole spices.',price:79,emoji:'☕',badge:'BREWED FRESH'},
+  {id:10,name:'Mango Lassi',cat:'Drinks',desc:'Sweet Alphonso mango blended with creamy yogurt.',price:149,emoji:'🥭',badge:'SEASONAL'},
+  {id:11,name:'Veg Hakka Noodles',cat:'Mains',desc:'Wok tossed noodles, crisp vegetables, Indo-Chinese spices.',price:299,emoji:'🍜',badge:'VEGETARIAN'},
+  {id:12,name:'Tandoori Prawns',cat:'Starters',desc:'Coastal prawns marinated in yogurt, chilli, and lime.',price:499,emoji:'🍤',badge:'SOLD OUT TODAY',available:false},
+  {id:13,name:'Dal Makhani',cat:'Mains',desc:'Slow simmered black lentils, finished with butter and cream.',price:349,emoji:'🥣',badge:'SLOW COOKED'},
+  {id:14,name:'Chole Bhature',cat:'Mains',desc:'Spiced Punjabi chickpeas with fluffy fried bhature.',price:299,emoji:'🫓',badge:'PUNJABI CLASSIC'},
+  {id:15,name:'Chicken Tikka',cat:'Starters',desc:'Yogurt marinated chicken, charred in the tandoor.',price:449,emoji:'🍢',badge:'FROM THE TANDOOR'}
+];
+
+let basket = {};
+let category = 'All';
+let stars = 0;
+let orderPlaced = false;
+
+function formatPrice(amount) {
+  return new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+    maximumFractionDigits: 0
+  }).format(amount);
+}
+
+function renderMenu() {
+  const grid = document.getElementById('menu-grid');
+  grid.innerHTML = dishes
+    .filter(dish => category === 'All' || dish.cat === category)
+    .map(dish => `
+      <article class="item">
+        <div class="foodart">
+          <span class="badge ${dish.sale ? 'sale' : ''}">${dish.badge}</span>
+          <span class="foodemoji">${dish.emoji}</span>
+        </div>
+        <div class="itembody">
+          <div class="itemtop">
+            <h3>${dish.name}</h3>
+            <div class="price">
+              ${dish.old ? `<span class="old">${formatPrice(dish.old)}</span>` : ''}
+              ${formatPrice(dish.price)}
+            </div>
+          </div>
+          <p>${dish.desc}</p>
+          <div class="itemfoot">
+            <span class="available ${dish.available === false ? 'sold' : ''}">
+              ${dish.available === false ? 'Sold out today' : 'Available today'}
+            </span>
+            <button class="add" ${dish.available === false ? 'disabled' : ''} onclick="addItem(${dish.id})">
+              ${dish.available === false ? 'Sold out' : '+ Add'}
+            </button>
+          </div>
+        </div>
+      </article>
+    `).join('');
+}
+
+document.querySelectorAll('.filter').forEach(button => {
+  button.addEventListener('click', () => {
+    document.querySelector('.filter.active').classList.remove('active');
+    button.classList.add('active');
+    category = button.dataset.cat;
+    renderMenu();
+  });
+});
+
+function addItem(id) {
+  if (orderPlaced) return;
+  basket[id] = (basket[id] || 0) + 1;
+  renderBasket();
+  toast(`${dishes.find(dish => dish.id === id).name} added to your order`);
+}
+
+function renderBasket() {
+  const count = Object.values(basket).reduce((sum, quantity) => sum + quantity, 0);
+  document.getElementById('cart-count').textContent = count;
+
+  const rows = Object.entries(basket);
+  document.getElementById('order-items').innerHTML = rows.length
+    ? rows.map(([id, quantity]) => {
+        const dish = dishes.find(item => item.id == id);
+        return `<div class="orderrow"><span>${quantity} × ${dish.name}</span><span>${formatPrice(quantity * dish.price)}</span></div>`;
+      }).join('')
+    : '<div class="empty">Your basket is waiting for a little something.</div>';
+
+  const total = rows.reduce((sum, [id, quantity]) =>
+    sum + dishes.find(item => item.id == id).price * quantity, 0
+  );
+  document.getElementById('subtotal').textContent = formatPrice(total);
+  document.getElementById('delivery').textContent = count
+    ? 'Free pickup · delivery at checkout'
+    : 'Calculated at checkout';
+  document.getElementById('checkout').disabled = !count;
+  document.getElementById('checkout').textContent = orderPlaced ? 'Order in progress' : 'Start my order';
+  document.getElementById('order-message').textContent = orderPlaced
+    ? 'Your kitchen is on it!'
+    : count
+      ? `${count} delicious ${count === 1 ? 'item' : 'items'} · ready in about 20 min`
+      : 'Add something delicious to begin';
+}
+
+function toast(message) {
+  const toastElement = document.getElementById('toast');
+  toastElement.textContent = message;
+  toastElement.classList.add('show');
+  setTimeout(() => toastElement.classList.remove('show'), 2200);
+}
+
+function placeOrder() {
+  if (!Object.keys(basket).length) return;
+  orderPlaced = true;
+  renderBasket();
+  document.getElementById('s2').classList.add('done');
+  document.querySelector('#s2 .dot').textContent = '✓';
+  toast('Order placed! The kitchen is getting started.');
+
+  setTimeout(() => {
+    document.getElementById('s3').classList.add('done');
+    document.querySelector('#s3 .dot').textContent = '✓';
+    document.getElementById('order-message').textContent = 'Your order is packed and on its way!';
+  }, 9000);
+
+  setTimeout(() => {
+    document.getElementById('s4').classList.add('done');
+    document.querySelector('#s4 .dot').textContent = '✓';
+    document.getElementById('order-message').textContent = 'Delivered with love. Enjoy!';
+  }, 18000);
+}
+
+document.querySelectorAll('[data-star]').forEach(button => {
+  button.addEventListener('click', () => {
+    stars = Number(button.dataset.star);
+    document.querySelectorAll('[data-star]').forEach(starButton => {
+      starButton.classList.toggle('selected', Number(starButton.dataset.star) <= stars);
+    });
+  });
+});
+
+document.getElementById('feedback-form').addEventListener('submit', event => {
+  event.preventDefault();
+  if (!stars) {
+    toast('Choose a star rating before sending');
+    return;
+  }
+  document.getElementById('thanks').style.display = 'block';
+  event.target.reset();
+  stars = 0;
+  document.querySelectorAll('[data-star]').forEach(button => button.classList.remove('selected'));
+});
+
+renderMenu();
+renderBasket();
+</script>
+</body>
+</html>
